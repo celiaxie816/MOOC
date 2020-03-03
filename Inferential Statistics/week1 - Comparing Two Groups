@@ -1,0 +1,91 @@
+# calculate the difference in sample proportions and store it in a variable called difference
+difference <- 0.6 - 0.42
+
+
+# calculate the pooled estimate and store it in a variable called pooled
+pooled <- ((0.6 * 100) + (0.42 * 150)) / (100 + 150)
+
+# calculate the standard error and store it in a variable called se
+se <- sqrt(pooled * (1 - pooled) * ((1 / 100) + (1/ 150)))
+
+Module 1
+# calculate the z value and store it in a variable called Z_value
+z_value = difference / se
+
+# calculate the associated p_value and store it in a variable called p_value
+p_value = 2 * pnorm(z_value, lower.tail = FALSE)
+
+# decide what your decision is and put it in a variable called conclusion
+conclusion = "rejected"
+
+
+## Comparing two means
+# average difference between male and female sample in hours of sport per week
+mean_difference = 4.2 - 5.8
+
+# standard error of the difference between male and female sample in hours of sport per week
+se = sqrt((2.3^2)/100 + (3.1^2)/150)
+
+# calculate the t score and assign it to the variable t_score
+t_score = mean_difference / se
+
+# calculate the degrees of freedom and store it in a variable called df
+df = 100+150 -2
+
+# calculate the p value
+pt(t_score, df)*2
+
+# calculate the 99% confidence interval and print it to the console
+mean_difference + c(-1, 1) * qt(0.995, df = df) *se
+
+# calculate the pooled standard deviation and put it in a variable called pooled
+pooled = sqrt((99*(2.8^2) + 149*(2.8^2))/(100+150-2))
+
+# calculate the standard error and put it in a variable called se
+se = pooled * sqrt((1/100) + (1/150))
+
+# peform a student t test and print the output to the console
+t.test(hours ~ gender, data = sport, conf.level = 0.99)
+
+
+##Comparing two proportions for paired samples (4)
+# calculate the z value and assign it to the variable z_value
+z_value = (50  - 35) / sqrt((50 + 35))
+
+# calculate the p value that pertains to the z value
+pnorm(z_value, lower.tail = FALSE)*2
+
+# assign a yes or a no to the variable difference
+difference = "no"
+
+# perform a mcnemar test on the matrix europe
+mcnemar.test(europe)
+
+
+## Comparing two means for paired samples (2)
+# calculate the variable x_diff
+x_diff = mean(weight$pre_weight) - mean(weight$post_weight)
+
+# # calculate the variable std
+std = sd((weight$pre_weight - weight$post_weight) - x_diff)
+
+# # calculate the variable se
+se = std / sqrt(nrow(weight))
+
+# calculate the degrees of freedom against which we are testing and store it in df
+df = nrow(weight) - 1
+
+# calculate the t value
+t_value = x_diff / se
+
+# calculate the p value
+p_value = pt(t_value, df = df,lower.tail=FALSE)*2
+
+# print p value to the console
+p_value
+
+# use the prop.test function on the data from the table
+prop.test(x = c(3715,1513), n=c(8442,4321))
+
+# perform a paired samples t test
+t.test(x = pre_weight, y = post_weight, data = weight, paired = TRUE)
