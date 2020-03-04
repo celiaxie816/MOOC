@@ -31,7 +31,7 @@ sample_pop <- nrow(pop_data)
 between_group_variance <- (sample_classical * (classical_average - grand_mean)^2 + sample_hiphop * (hiphop_average - grand_mean)^2 + sample_pop * (pop_average - grand_mean)^2) / 2
 
 
-##Part 2: Calculating the within group variance  & F stats 
+##Part 3: Calculating the within group variance  & F stats 
 # calculate sum of squares for the classical genre and put it in a variable sum_squares_classical
 sum_squares_classical <- sum((classical_data$duration - classical_average)^2) 
 
@@ -56,7 +56,7 @@ df2 <- (nrow(classical_data) + nrow(hiphop_data) + nrow(pop_data) - 3)
 p_value <- round(pf(f_stat, df1, df2, lower.tail = FALSE),2)
 
 
-##check anova assumptiosn and explain the anova function
+##Part 4: check anova assumptiosn and explain the anova function
 # check for normality in the classical genre
 shapiro.test(classical_data$duration)
 
@@ -79,7 +79,7 @@ fit_lm <- lm(song_data$duration ~ song_data$genre)
 summary(fit_lm)
 
 
-##Part 4: Multiple Comparisons 
+##Part 5: Multiple Comparisons 
 #the family-wise error rate 1−(1−α)^m 
 #If we do 10 tests all with a significance level α of 5%, what would become our family-wise error rate? Use the formula displayed above and fill in the gaps. What does this family-wise error rate mean in this context?
 #Ans: The family-wise error rate becomes 40%. This means that there's a probability of 0.4 that we falsely reject at least 1 null hypothesis.
@@ -92,7 +92,7 @@ pairwise.t.test(song_data$duration, g =song_data$genre, p.adj = "bonf")
 TukeyHSD(x = fit_aov, 'song_data$genre', conf.level = 0.95)
 
 
-##Part 5: Two-way Anova
+##Part 6: Two-way Anova
 # run a two-way anove and store it in the object two_way_fit
 two_way_fit <- aov(song_data$duration ~ song_data$genre + song_data$continent)
 
