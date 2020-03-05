@@ -5,13 +5,13 @@ import java.util.Scanner;
 
 public class OOPCalculator {
 
-	public static int menuChoice;//create a global variable of menuchoice
-	public static float firstFloat = Integer.MAX_VALUE;//initialize firstfloat
-	public static float secondFloat = Integer.MAX_VALUE;//initialize secondfloat
-	public static int[] choice = { 1, 2, 3, 4, 5 };//for evaluating whether the Menuchoice given by user is out of bound
-	public static Scanner getInput = new Scanner(System.in);//create scanner getInput
+	private int menuChoice;//create a global variable of menuchoice
+	private float firstFloat = Integer.MAX_VALUE;//initialize firstfloat
+	private float secondFloat = Integer.MAX_VALUE;//initialize secondfloat
+	private int[] choice = { 1, 2, 3, 4, 5 };//for evaluating whether the Menuchoice given by user is out of bound
+	private Scanner getInput = new Scanner(System.in);//create scanner getInput
 
-	OOPCalculator() {
+	public OOPCalculator() {
 
 	}
 
@@ -131,6 +131,13 @@ public class OOPCalculator {
 	}
 
 	public static void main(String[] args) {
+		OOPCalculator calc = new OOPCalculator();
+		while (calc. askCalcChoice () != 5){ //it will set choice
+		calc. askTwoValues (); //it will set two values
+		calc.displayResults(); //do calc, display result
+		//and wait on press enter key
+		}
+		calc.displayBye();
 
 	}
 }

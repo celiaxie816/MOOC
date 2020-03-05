@@ -1,0 +1,44 @@
+week6 - Non-parametric Test
+
+##Part 1:The Wilcoxon Signed-Rank Test
+#' test the hypothesis that there is an equal number of american citizens voting for 
+#' Hillary Clinton and Bernie Sanders
+binom.test(210,350,p=0.5,alternative = "two.sided")
+
+#' State your conclusion in the variable conclusion. Assign it either the value of "rejected"
+#' or the value of "accepted"
+conclusion <- "rejected"
+
+# do a Wilcoxon test
+wilcox.test(score_ipa, score_wheat, alternative = 'greater', paired = TRUE)
+
+# assign your conclusion to the variable conclusion
+conclusion <- "rejected"
+
+
+##Part 2:The Wilcoxon rank-sum test
+# do a Wilcoxon rank-sum test
+wilcox.test(beer_data$rating ~ beer_data$group, alternative = "greater")
+
+# assign your conclusion to the variable conclusion
+conclusion <- "rejected"
+
+
+##Part 3:Kruskal-Wallis Test
+# do a Kruskal-Wallis test
+kruskal.test(rating ~ group, data = beer_data)
+
+
+# assign your conclusion to the variable conclusion
+conclusion <- "not"
+
+
+##Part 4:Spearman Coefficients
+# calculate the spearman correlation between education level and rating of craft beer
+cor(beer_data$education_level, beer_data$consumption, method = "spearman")
+
+# calculate the correlation coefficient and test whether it is different from 0
+cor.test(beer_data$education_level, beer_data$consumption, method = "spearman")
+
+# is the null hypothesis accepted or rejected. Assign either value to the variable conclusion
+conclusion <- "rejected"
