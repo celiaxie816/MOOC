@@ -16,20 +16,29 @@ public class OOPCalculator {
 	}
 
 	public int askCalcChoice() {
-		String str_choice;
+		String char_choice;
 		int check_choice;
 		Map menuDict = new HashMap();//to match user input to menu options
+		Scanner getInput = new Scanner(System.in);
+		
+		
 		menuDict.put("a", 1);
 		menuDict.put("s", 2);
 		menuDict.put("m", 3);
 		menuDict.put("d", 4);
 		menuDict.put("x", 5);
+		menuDict.put("A", 1);
+		menuDict.put("S", 2);
+		menuDict.put("M", 3);
+		menuDict.put("D", 4);
+		menuDict.put("X", 5);
 		menuDict.put("1", 1);
 		menuDict.put("2", 2);
 		menuDict.put("3", 3);
 		menuDict.put("4", 4);
 		menuDict.put("5", 5);
 
+		
 		System.out.println("\nWelcome to <Sisi Xie's> Handy Calculator\n");
 		System.out.println("\n\t1. Addition\n\t2. Subtraction\n\t3. Multiplication\n\t4. Division\n\t5. Exit");
 
@@ -38,15 +47,12 @@ public class OOPCalculator {
 		do {
 			menuChoice = 0;
 			try {
-				str_choice = getInput.nextLine();
-				menuChoice = (int) menuDict.get(str_choice.toLowerCase());
-
-				check_choice = choice[menuChoice - 1]; // see if the input choice is out of bound
-			} catch (NullPointerException e) {
+				char_choice = (String)getInput.next().subSequence(0,1);
+				menuChoice = (int)menuDict.get(char_choice);
+			} catch (final NullPointerException e) {
 				System.out.print("\n\tYou have entered invalid input. Try again:");// see if user input is invalid
-																						
 			}
-
+		   getInput.nextLine();
 		} while ((menuChoice > 5) || (menuChoice < 1)); // if user enters invalid choice like characters or integers out of bound, repeat the process in the loop
 
 		return menuChoice;
@@ -65,7 +71,7 @@ public class OOPCalculator {
 		dict2.put(3, "multiply");
 		dict2.put(4, "divide");
 
-		System.out.print("\n\tPlease enter two floats to " + dict2.get(menuChoice) + " separated by a space:");// get choice from getUserChoice method and ask user to give two floats
+		System.out.print("\tPlease enter two numbers to " + dict2.get(menuChoice) + " separated by a space:");// get choice from getUserChoice method and ask user to give two floats
 
 		// handle the user choice with two scenarios: smaller than 4 and equal to 4
 		if (menuChoice < 4) {
@@ -106,23 +112,23 @@ public class OOPCalculator {
 
 	public void displayResults() {
 
-		if (menuChoice == 1) {
+		do{if (menuChoice == 1) {
 			System.out.printf("\tResult of adding %.2f and %.2f is %.2f.\n", firstFloat, secondFloat,
 					firstFloat + secondFloat);
-		} else if (menuChoice == 2) {
-			System.out.printf("\tResult of subtracting %.2f and %.2f is %.2f.\n", firstFloat, secondFloat,
-					firstFloat - secondFloat);
-		} else if (menuChoice == 3) {
-			System.out.printf("\tResult of multiplying %.2f and %.2f is %.2f.\n", firstFloat, secondFloat,
-					firstFloat * secondFloat);
-		} else {
-			System.out.printf("\tResult of dividing  %.2f and %.2f is %.2f.\n", firstFloat, secondFloat,
-					firstFloat / secondFloat);
-		}
-
-		System.out.println("\n\tPress enter key to continue....");
-
-		getInput.nextLine();//wait user to press enter
+			} else if (menuChoice == 2) {
+				System.out.printf("\tResult of subtracting %.2f and %.2f is %.2f.\n", firstFloat, secondFloat,
+						firstFloat - secondFloat);
+			} else if (menuChoice == 3) {
+				System.out.printf("\tResult of multiplying %.2f and %.2f is %.2f.\n", firstFloat, secondFloat,
+						firstFloat * secondFloat);
+			} else {
+				System.out.printf("\tResult of dividing  %.2f and %.2f is %.2f.\n", firstFloat, secondFloat,
+						firstFloat / secondFloat);
+			}
+			System.out.print("\tPress enter key to continue....");
+			getInput.nextLine();
+		    //wait user to press enter
+		   } while (!getInput.nextLine().equals(""));
 	}
 
 	public void displayBye() {
@@ -132,7 +138,8 @@ public class OOPCalculator {
 
 	public static void main(String[] args) {
 		OOPCalculator calc = new OOPCalculator();
-		while (calc. askCalcChoice () != 5){ //it will set choice
+		//calc.askCalcChoice ();
+		while (calc.askCalcChoice () != 5){ //it will set choice
 		calc. askTwoValues (); //it will set two values
 		calc.displayResults(); //do calc, display result
 		//and wait on press enter key
