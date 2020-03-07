@@ -26,16 +26,12 @@ public class Calculator {
 			Scanner GetInput = new Scanner(System.in);
 			choice = getUserChoice(GetInput);// assign the input from user to the integer variable 'choice'
 
-			System.out.println("\n");
-
 			// if choice smaller than 5, then continue to get two floats, otherwise print
 			// the ending words
 			if (choice < 5) {
 				System.out.print("Please enter two floats to " + dict.get(choice) + " separated by a space:");// get choice from getUserChoice method and ask user to give two floats
 				answer = getTwoFloats(GetInput, answer, choice);//pass scanner,initialized answer array{0,0} and input choice to the method to get 2 valid floats from users 
 				getResult(choice, answer[0], answer[1]);//pass answer choice and two floats to print the operation results from two floats
-				System.out.println("\nPress enter key to continue....");
-				res = GetInput.nextLine();// press enter to continue
 			} else {
 				System.out.println("Thank you for using <Sisi Xie's> Handy Calculator");
 		        GetInput.close();//done with the scanner, safely close it
@@ -46,20 +42,19 @@ public class Calculator {
 	}
 
 	// get choice from user
-	static int getUserChoice(Scanner var) {
-		int num;
+	public static int getUserChoice(Scanner var) {
+		int num=0;
 		int tmp;
 		int[] choice = { 1, 2, 3, 4, 5 };
 
 		do {
-			num = 0;
 			try {
 				num = var.nextInt(); // read the variable entered by user
 				tmp = choice[num - 1]; // see if the input choice is out of bound
 			} catch (InputMismatchException k) {
-				System.out.println("You have entered an invalid choice. Try again."); // if the input from user is not an integer, then output this exception
+				System.out.print("You have entered an invalid choice. Try again."); // if the input from user is not an integer, then output this exception
 			} catch (ArrayIndexOutOfBoundsException k) {
-				System.out.println("You have not entered a number between 1 and 5. Try again.");// if the integer out of range from 1 to 5, then output this exception
+				System.out.print("You have not entered a number between 1 and 5. Try again.");// if the integer out of range from 1 to 5, then output this exception
 			}
 
 			var.nextLine();// clear the buffer
@@ -70,7 +65,7 @@ public class Calculator {
 	}
 
 	//create a method get two valid floats from users 
-	static float[] getTwoFloats(Scanner var, float[] tempArray, int num) {
+	public static float[] getTwoFloats(Scanner var, float[] tempArray, int num) {
 		Float firstN = null; // initialize the first float input from user
 		Float secondN = null;// initialize the second float input from user
 		int result; // create a variable for the case when the second float = 0
@@ -117,16 +112,19 @@ public class Calculator {
 	}
 
 	// method for printing the operation result, pass userchoice and two floats inputs to conduct the operation.
-	static void getResult(int num, float a, float b) {
-		if (num == 1) {
+	public static void getResult(int num, float a, float b) {
+		Scanner GetInput = new Scanner(System.in);
+		do{if (num == 1) {
 			System.out.printf("Result of adding %.2f and %.2f is %.2f.\n", a, b, a + b);
-		} else if (num == 2) {
-			System.out.printf("Result of subtracting %.2f and %.2f is %.2f.\n", a, b, a - b);
-		} else if (num == 3) {
-			System.out.printf("Result of multiplying %.2f and %.2f is %.2f.\n", a, b, a * b);
-		} else {
-			System.out.printf("Result of dividing  %.2f and %.2f is %.2f.\n", a, b, a / b);
-		}
+			} else if (num == 2) {
+				System.out.printf("Result of subtracting %.2f and %.2f is %.2f.\n", a, b, a - b);
+			} else if (num == 3) {
+				System.out.printf("Result of multiplying %.2f and %.2f is %.2f.\n", a, b, a * b);
+			} else {
+				System.out.printf("Result of dividing  %.2f and %.2f is %.2f.\n", a, b, a / b);
+			}
+			System.out.print("\nPress enter key to continue....");
+			GetInput.nextLine();
+		  } while (!GetInput.nextLine().equals(""));
 	}
-
 }
