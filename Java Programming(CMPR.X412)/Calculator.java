@@ -34,7 +34,7 @@ public class Calculator {
 				getResult(choice, answer[0], answer[1]);//pass answer choice and two floats to print the operation results from two floats
 			} else {
 				System.out.println("Thank you for using <Sisi Xie's> Handy Calculator");
-		        GetInput.close();//done with the scanner, safely close it
+		        	GetInput.close();//done with the scanner, safely close it
 			}
 
 		} while (choice < 5);//as long as user does not choose 5 to exit, repeat the process in the loop
