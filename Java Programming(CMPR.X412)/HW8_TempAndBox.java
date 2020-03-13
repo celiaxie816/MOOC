@@ -4,12 +4,17 @@ import java.util.Scanner;
 public class HW8_TempAndBox {
 	// HW8-PART 1-Process temperature data
 	// a) create method getTemperatures
-	public static int weeklyTemp[] = new int[7]; // initialize the array;
-	public static int i;
-	public static Scanner getInput = new Scanner(System.in);
-	public static float total, average;
+	private int weeklyTemp[] = new int[7]; // initialize the array;
+	private int i;
+	private Scanner getInput = new Scanner(System.in);
+	private double total, average;
 
-	public static void getTemperatures() {
+	public HW8_TempAndBox() {
+		
+		
+	}
+	
+	public void getTemperatures() {
 		i = 0;
 		System.out.print("Please enter 7 temperatures for the week, separated by a space:");
 		do {
@@ -25,7 +30,7 @@ public class HW8_TempAndBox {
 	}
 
 	// b) print temperatures
-	public static void printTemperatures() {
+	public void printTemperatures() {
 		int day = 0;
 		for (int dayTemp : weeklyTemp) {// print temperature day by day in order
 			System.out.printf("The temperature on day %d " + "was: %d\n", ++day, dayTemp);
@@ -34,7 +39,7 @@ public class HW8_TempAndBox {
 	}
 
 	// c)find the maximum temperature
-	public static int getMax() {
+	public int getMax() {
 		int max = 0;
 		for (int dayTemp : weeklyTemp) {
 			if (dayTemp > max)
@@ -44,8 +49,8 @@ public class HW8_TempAndBox {
 	}
 
 	// d)get the minimum temperature
-	public static int getMin() {
-		int min = 0;
+	public int getMin() {
+		int min = Integer.MAX_VALUE;
 		for (int dayTemp : weeklyTemp) {
 			if (dayTemp < min)
 				min = dayTemp;
@@ -54,7 +59,7 @@ public class HW8_TempAndBox {
 	}
 
 	// e)get the average temperature
-	public static float getAverage() {
+	public double getAverage() {
 		total = 0;
 		for (int dayTemp : weeklyTemp) {
 			total += dayTemp;// get total weekly temperatures
@@ -63,7 +68,7 @@ public class HW8_TempAndBox {
 		return average;
 	}
 
-	public static void printStatistics() {
+	public void printStatistics() {
 		System.out.printf("The minimum temperature of the week is %d\n", getMin());
 		System.out.printf("The maximum temperature of the week is %d\n", getMax());
 		System.out.printf("The average temperature of the week is %f\n", getAverage());
@@ -71,14 +76,15 @@ public class HW8_TempAndBox {
 	}
 
 	// HW8-PART2-Create box
-	public static int x, y, a, b;
-	public static char hChar1, vChar1, fChar1;
-	public static int ht1, wd1;
-	public static char answer = 'y';
-	public static Scanner input1 = new Scanner(System.in);
+	
+	private int x, y, a, b;
+	private char hChar1, vChar1, fChar1;
+	private int ht1, wd1;
+	private char answer = 'y';
+	private Scanner input1 = new Scanner(System.in);
 
 	// a)create drawHorizontalLine
-	public static void drawHorizontalLine() {
+	public void drawHorizontalLine() {
 		wd1 = 11;
 		hChar1 = '-';
 		// input1.nextLine();//clean the buffer
@@ -90,7 +96,7 @@ public class HW8_TempAndBox {
 	}
 
 	// b)create drawVerticalLine that draws vertical lines | |
-	public static void drawVerticalLine() {
+	public void drawVerticalLine() {
 		ht1 = 5;
 		vChar1 = '|';
 
@@ -103,7 +109,7 @@ public class HW8_TempAndBox {
 	}
 
 	// create Drawbox method to call horizontal line and vertical line methods
-	public static void drawBox() {
+	public void drawBox() {
 		do {
 			drawHorizontalLine();
 			drawVerticalLine();
@@ -119,13 +125,14 @@ public class HW8_TempAndBox {
 	}
 
 	public static void main(String[] args) {
-		getTemperatures();
-		printTemperatures();
-		getMax();
-		getMin();
-		getAverage();
-		printStatistics();
-		drawBox();
+		HW8_TempAndBox temp_box = new HW8_TempAndBox();
+		temp_box.getTemperatures();;
+		temp_box.printTemperatures();
+		temp_box.getMax();
+		temp_box.getMin();
+		temp_box.getAverage();
+		temp_box.printStatistics();
+		temp_box.drawBox();
 
 	}
 
